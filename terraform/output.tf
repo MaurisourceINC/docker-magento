@@ -3,3 +3,4 @@ output "instance_public_ip" {
   description = "AWS EC2 instance public IP"
   sensitive   = false
 }
+

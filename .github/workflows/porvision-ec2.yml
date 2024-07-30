@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - release*
+      - 'release/next'
     paths:
       - 'terraform/**'
       - '.github/workflows/provision-ec2.yaml'
