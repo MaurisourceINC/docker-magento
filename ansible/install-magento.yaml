@@ -55,6 +55,7 @@
       file:
         path: '{{ pwd_output.stdout }}/compose/bin'
         state: directory
+        recurse: yes
         mode: '0755'
 
     - name: Run command to print working directory
