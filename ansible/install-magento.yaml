@@ -40,7 +40,6 @@
 
     - name: Change to the newly created directory and perform actions
       command: |
-        # Any command you want to run within the directory context
         echo "Now in the directory"
       args:
         chdir: ~/magento
