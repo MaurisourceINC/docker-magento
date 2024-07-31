@@ -49,18 +49,22 @@
     - name: Copy the Docker Compose template
       copy:
         src: ../compose
-        dest: ./magento
+        dest: '{{ pwd_output.stdout }}'
 
     - name: Run command to print working directory
-      command: sh bin/download 2.4.7 community 
+      path: '{{ pwd_output.stdout }}/compose/bin'
+      state: directory
+      mode: '0755'
+
+    - name: Run command to print working directory
+      command: bin/download 2.4.7 community 
       become: yes
       args:
         chdir: '{{ pwd_output.stdout }}/compose'
-      # debug:
-      #   msg: {{ pwd }}
+
 
     - name: Run command to print working directory
-      command: sh bin/setup aws.onedev.one # Use 'shell' instead of 'command' if you're on a shell that supports it
+      command: bin/setup aws.onedev.one # Use 'shell' instead of 'command' if you're on a shell that supports it
       become: yes
       args:
         chdir: '{{ pwd_output.stdout }}/compose'
