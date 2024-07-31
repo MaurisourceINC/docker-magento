@@ -1,0 +1,43 @@
+name: Install magento
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/install-magento.yaml'
+      - 'ansible/install-magento.yaml'
+jobs:
+  install-magento:
+    runs-on: ubuntu-latest
+    # defaults: 
+    #   run:
+    #     working-directory: ansible
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ansible inventory
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+        run: |
+          echo "Creating Ansible inventory from template..."
+          cat ./ansible/inventory_template.ini | \
+          sed -e "s/{{ server_ip }}/$SERVER_IP/" \
+          -e "s/{{ server_user }}/$SERVER_USER/" \
+          > ./ansible/inventory.ini
+        shell: bash
+      - name: Print inventory for debug
+        run: cat ./ansible/inventory.ini
+      - uses: dawidd6/action-ansible-playbook@v2
+        env:
+          # prod server ip for ansible
+          SERVER_IP: ${{ secrets.SERVER_IP}}
+          SERVER_USER: ${{ secrets.SERVER_USER}}
+          SERVER_HOSTNAME: ${{ secrets.SERVER_HOSTNAME}}
+        with:
+          playbook: magento.yaml
+          directory: ./ansible
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          options:
+            -i inventory.ini
+            

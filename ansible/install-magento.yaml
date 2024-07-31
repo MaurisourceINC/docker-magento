@@ -1,0 +1,52 @@
+- name: Install Magento 
+  hosts: server
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: Populate Apt's Cache with package definitions to avoid "no such package" errors
+      apt:
+        update_cache: true
+
+    - name: Create a Composer dir
+      file:
+        path: ~/.composer
+        state: directory
+        # mode: '0755'
+
+    - name: Create a Composer dir
+      file:
+        path: ~/.ssh
+        state: directory
+        # mode: '0755'
+
+    - name: Create a magento
+      file:
+        path: ./magento
+        state: directory
+        # mode: '0755'
+
+    - name: Change to the newly created directory and perform actions
+      command: |
+        # Any command you want to run within the directory context
+        echo "Now in the directory"
+      args:
+        chdir: ./magento
+
+    - name: Run command to print working directory
+      command: pwd  # Use 'shell' instead of 'command' if you're on a shell that supports it
+      register: pwd_output
+
+
+    - name: Copy the Docker Compose template
+      copy:
+        src: compose
+        dest: compose
+
+    - name: Run command to print working directory
+      command: bin/download 2.4.7 community # Use 'shell' instead of 'command' if you're on a shell that supports it
+      args:
+        chdir: ./compose
+
+    - name: Run command to print working directory
+      command: bin/setup aws.onedev.one # Use 'shell' instead of 'command' if you're on a shell that supports it
