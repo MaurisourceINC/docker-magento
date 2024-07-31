@@ -52,9 +52,10 @@
         dest: '{{ pwd_output.stdout }}'
 
     - name: Run command to print working directory
-      path: '{{ pwd_output.stdout }}/compose/bin'
-      state: directory
-      mode: '0755'
+      file:
+        path: '{{ pwd_output.stdout }}/compose/bin'
+        state: directory
+        mode: '0755'
 
     - name: Run command to print working directory
       command: bin/download 2.4.7 community 
