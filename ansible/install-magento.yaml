@@ -48,22 +48,18 @@
 
     - name: Copy the Docker Compose template
       copy:
-        src: ../compose
-        dest: '{{ pwd_output.stdout }}'
+        src: ../compose/
+        dest: '{{ pwd_output.stdout }}/'
+        mode: '0755' 
+        recurse: yes 
 
-    - name: Run command to print working directory
-      file:
-        path: '{{ pwd_output.stdout }}/compose/bin'
-        state: directory
-        recurse: yes
-        mode: '0755'
 
     - name: Run command to print working directory
       command: bin/download 2.4.7 community 
       become: yes
       become_user: root
       args:
-        chdir: '{{ pwd_output.stdout }}/compose'
+        chdir: '{{ pwd_output.stdout }}'
 
 
     - name: Run command to print working directory
@@ -71,4 +67,4 @@
       become: yes
       become_user: root
       args:
-        chdir: '{{ pwd_output.stdout }}/compose'
+        chdir: '{{ pwd_output.stdout }}'
