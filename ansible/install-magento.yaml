@@ -58,14 +58,16 @@
         mode: '0755'
 
     - name: Run command to print working directory
-      shell: bin/download 2.4.7 community 
+      command: bin/download 2.4.7 community 
       become: yes
+      become_user: root
       args:
         chdir: '{{ pwd_output.stdout }}/compose'
 
 
     - name: Run command to print working directory
-      shell: bin/setup aws.onedev.one # Use 'shell' instead of 'command' if you're on a shell that supports it
+      command: bin/setup aws.onedev.one 
       become: yes
+      become_user: root
       args:
         chdir: '{{ pwd_output.stdout }}/compose'
