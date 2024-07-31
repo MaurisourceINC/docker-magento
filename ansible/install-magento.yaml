@@ -26,6 +26,10 @@
         state: directory
         # mode: '0755'
 
+    - name: Run command to print working directory
+      command: pwd  # Use 'shell' instead of 'command' if you're on a shell that supports it
+      register: pwd_output
+      
     - name: Change to the newly created directory and perform actions
       command: |
         # Any command you want to run within the directory context
@@ -33,9 +37,6 @@
       args:
         chdir: ~/magento
 
-    - name: Run command to print working directory
-      command: pwd  # Use 'shell' instead of 'command' if you're on a shell that supports it
-      register: pwd_output
 
 
     - name: Copy the Docker Compose template
