@@ -29,10 +29,12 @@
     - name: Run command to print working directory
       command: pwd  # Use 'shell' instead of 'command' if you're on a shell that supports it
       register: pwd_output
+      no_log: false
 
     - name: Print working directory
       debug:
         msg: "Working directory: {{ pwd_output.stdout }}"
+      no_log: false
 
     - name: Change to the newly created directory and perform actions
       command: |
