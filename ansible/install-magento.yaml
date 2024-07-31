@@ -52,15 +52,15 @@
         dest: ./magento
 
     - name: Run command to print working directory
-      command: '{{ pwd_output.stdout }}/compose/bin/download 2.4.7 community' 
+      command: sh bin/download 2.4.7 community 
       become: yes
-      # args:
-      #   chdir: /home/ubuntu/magento/compose/bin
+      args:
+        chdir: '{{ pwd_output.stdout }}/compose'
       # debug:
       #   msg: {{ pwd }}
 
     - name: Run command to print working directory
-      command: '{{ pwd_output.stdout }}/compose/bin/setup aws.onedev.one' # Use 'shell' instead of 'command' if you're on a shell that supports it
+      command: sh bin/setup aws.onedev.one # Use 'shell' instead of 'command' if you're on a shell that supports it
       become: yes
-      # args:
-      #   chdir: /home/ubuntu/magento/compose/bin
+      args:
+        chdir: '{{ pwd_output.stdout }}/compose'
