@@ -29,7 +29,11 @@
     - name: Run command to print working directory
       command: pwd  # Use 'shell' instead of 'command' if you're on a shell that supports it
       register: pwd_output
-      
+
+    - name: Print working directory
+      debug:
+        msg: "Working directory: {{ pwd_output.stdout }}"
+
     - name: Change to the newly created directory and perform actions
       command: |
         # Any command you want to run within the directory context
