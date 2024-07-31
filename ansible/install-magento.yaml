@@ -22,7 +22,7 @@
 
     - name: Create a magento
       file:
-        path: ./magento
+        path: ~/magento
         state: directory
         # mode: '0755'
 
@@ -31,7 +31,7 @@
         # Any command you want to run within the directory context
         echo "Now in the directory"
       args:
-        chdir: ./magento
+        chdir: ~/magento
 
     - name: Run command to print working directory
       command: pwd  # Use 'shell' instead of 'command' if you're on a shell that supports it
