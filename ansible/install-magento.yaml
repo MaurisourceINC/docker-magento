@@ -48,7 +48,7 @@
 
     - name: Copy the Docker Compose template
       copy:
-        src: ./compose
+        src: ../compose
         dest: ./compose
 
     - name: Run command to print working directory
