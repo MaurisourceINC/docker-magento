@@ -35,7 +35,7 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER}}
           SERVER_HOSTNAME: ${{ secrets.SERVER_HOSTNAME}}
         with:
-          playbook: magento.yaml
+          playbook: install-magento.yaml
           directory: ./ansible
           key: ${{secrets.SSH_PRIVATE_KEY}}
           options:
