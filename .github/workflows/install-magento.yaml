@@ -2,7 +2,7 @@ name: Install magento
 on:
   push:
     branches:
-      - main
+      - 'release/next'
     paths:
       - 'terraform/**'
       - '.github/workflows/install-magento.yaml'
