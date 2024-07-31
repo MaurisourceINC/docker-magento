@@ -49,7 +49,7 @@
     - name: Copy the Docker Compose template
       copy:
         src: ../compose
-        dest: ./magento/compose
+        dest: ./magento
 
     - name: Run command to print working directory
       command: bin/download 2.4.7 community # Use 'shell' instead of 'command' if you're on a shell that supports it
