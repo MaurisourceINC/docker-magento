@@ -52,11 +52,13 @@
         dest: ./magento
 
     - name: Run command to print working directory
-      command: download 2.4.7 community # Use 'shell' instead of 'command' if you're on a shell that supports it
+      command: download 2.4.7 community 
       args:
-        chdir: ./magento/compose/bin
+        chdir: /home/ubuntu/magento/compose/bin
+      # debug:
+      #   msg: {{ pwd }}
 
     - name: Run command to print working directory
       command: setup aws.onedev.one # Use 'shell' instead of 'command' if you're on a shell that supports it
       args:
-        chdir: ./magento/compose/bin
+        chdir: /home/ubuntu/magento/compose/bin
