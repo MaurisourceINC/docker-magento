@@ -27,7 +27,9 @@
         # mode: '0755'
 
     - name: Run command to print working directory
-      command: pwd  # Use 'shell' instead of 'command' if you're on a shell that supports it
+      command: pwd 
+      args:
+        chdir: ~/magento 
       register: pwd_output
       no_log: false
 
