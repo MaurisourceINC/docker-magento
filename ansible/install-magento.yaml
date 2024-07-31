@@ -22,14 +22,14 @@
 
     - name: Create a magento
       file:
-        path: ~/magento
+        path: ./magento
         state: directory
-        # mode: '0755'
+        mode: '0755'
 
     - name: Run command to print working directory
       command: pwd 
       args:
-        chdir: ~/magento 
+        chdir: ./magento 
       register: pwd_output
       no_log: false
 
@@ -38,11 +38,11 @@
         msg: "Working directory: {{ pwd_output.stdout }}"
       no_log: false
 
-    - name: Change to the newly created directory and perform actions
-      command: |
-        echo "Now in the directory"
-      args:
-        chdir: ~/magento
+    # - name: Change to the newly created directory and perform actions
+    #   command: |
+    #     echo "Now in the directory"
+    #   args:
+    #     chdir: ./magento
 
 
 
