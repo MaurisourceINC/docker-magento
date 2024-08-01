@@ -3,9 +3,6 @@
   become: yes
   gather_facts: false
 
-  vars:
-    - username: {{ lookup('USERNAME') }}
-    - username: {{ lookup('USERNAME') }}
 
   tasks:
     - name: Populate Apt's Cache with package definitions to avoid "no such package" errors
