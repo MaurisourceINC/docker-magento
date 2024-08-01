@@ -3,6 +3,10 @@
   become: yes
   gather_facts: false
 
+  vars:
+    - username: {{ lookup('USERNAME') }}
+    - username: {{ lookup('USERNAME') }}
+
   tasks:
     - name: Populate Apt's Cache with package definitions to avoid "no such package" errors
       apt:
@@ -52,9 +56,11 @@
         mode: '0755'
 
     - name: Run the download command
-      command: bin/download 2.4.7 community 
-      become: yes
-      become_user: root
+      expect:
+        command: bin/download 2.4.7 community 
+        responses:
+          'Username:': "{{ lookup('env', 'USERNAME') | default('default_username', true) }}\n"
+          'Password:': "{{ lookup('env', 'PASSWORD') | default('default_password', true) }}\n"
       args:
         chdir: '{{ pwd_output.stdout }}'
 
