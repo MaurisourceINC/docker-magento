@@ -56,7 +56,7 @@
         mode: '0755'
 
     - name: Authenticate compose
-      expects:
+      expect:
         command: bin/setup-composer-auth 
         responses:
           'Username:': "{{ username }}\n"
