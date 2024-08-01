@@ -56,7 +56,7 @@
         mode: '0755'
 
     - name: Authenticate compose
-      expects:
+      expect:
         command: bin/setup-composer-auth 
         responses:
           'Username:': "{{ username }}\n"
@@ -72,7 +72,6 @@
 
     - name: Run the setup command
       command: bin/setup aws.onedev.one 
-      become: yes
-      become_user: root
       args:
         chdir: '{{ pwd_output.stdout }}'
+      
