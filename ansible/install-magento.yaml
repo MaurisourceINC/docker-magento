@@ -49,6 +49,12 @@
         dest: '{{ pwd_output.stdout }}/'
         mode: '0755'
 
+    - name: Explicitlty set permission on bin subfolder
+      file:
+        path: '{{ pwd_output.stdout }}/bin'
+        state: directory
+        mode: '0775'
+
     - name: Set mode of files in bin dir to executable
       file:
         path: '{{ pwd_output.stdout }}/bin'
