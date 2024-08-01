@@ -55,12 +55,16 @@
         recurse: yes
         mode: '0755'
 
+    - name: Authenticate compose
+      command: bin/setup-composer-auth 
+      responses:
+        'Username:': "{{ username }}\n"
+        'Password:': "{{ password }}\n"
+      args:
+        chdir: '{{ pwd_output.stdout }}'
+
     - name: Run the download command
-      expect:
-        command: bin/download 2.4.7 community 
-        responses:
-          'Username:': "{{ username }}\n"
-          'Password:': "{{ password }}\n"
+      command: bin/download 2.4.7 community 
       args:
         chdir: '{{ pwd_output.stdout }}'
 
